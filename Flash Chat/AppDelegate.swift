@@ -7,20 +7,21 @@
 //
 
 import UIKit
-
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    
+   
+   
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+      
         //TODO: Initialise and Configure your Firebase here:
-        
-        
-        return true
+         FirebaseApp.configure()
+         let myDataBase = Database.database().reference()
+         myDataBase.setValue("We Got Data")
+         return true
     }
 
     
