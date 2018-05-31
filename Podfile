@@ -6,5 +6,7 @@ target 'Flash Chat' do
   use_frameworks!
 
   pod 'RevealingSplashView'
+  pod 'Firebase/Core'
+
 
 end
