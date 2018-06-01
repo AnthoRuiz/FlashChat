@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 
 class RegisterViewController: UIViewController {
@@ -25,21 +26,27 @@ class RegisterViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+   
+   func showAlert(title: String, message: String){
+      
+      let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
+      alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+      self.present(alertView, animated: true, completion: nil)
+   }
 
   
     @IBAction func registerPressed(_ sender: AnyObject) {
-        
 
-        
         //TODO: Set up a new user on our Firbase database
       
       Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
          if error != nil {
+            self.showAlert(title: "Error", message: error!.localizedDescription)
             print(error.debugDescription)
          }else{
-            //success
+            SVProgressHUD.show()
             print("registration suceess")
+            SVProgressHUD.dismiss()
             self.performSegue(withIdentifier: "goToChat", sender: self)
          }
       }
