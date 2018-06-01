@@ -38,6 +38,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         //TODO: Set the tapGesture here:
+      self.view.bindKeyboard()
       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
       messageTableView.addGestureRecognizer(tapGesture)
         
@@ -110,25 +111,25 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     //TODO: Declare textFieldDidBeginEditing here:
-   func textFieldDidBeginEditing(_ textField: UITextField) {
-      
-      UIView.animate(withDuration: 0.5) {
-         self.heightConstraint.constant = 308
-         self.view.layoutIfNeeded()
-      }
-   }
+//   func textFieldDidBeginEditing(_ textField: UITextField) {
+//
+//      UIView.animate(withDuration: 0.5) {
+//         self.heightConstraint.constant = 320
+//         self.view.layoutIfNeeded()
+//      }
+//   }
    
     
     //TODO: Declare textFieldDidEndEditing here:
    
-   func textFieldDidEndEditing(_ textField: UITextField) {
-     
-      UIView.animate(withDuration: 0.5) {
-         self.heightConstraint.constant = 50
-         self.view.layoutIfNeeded()
-      }
-      
-   }
+//   func textFieldDidEndEditing(_ textField: UITextField) {
+//     
+//      UIView.animate(withDuration: 0.5) {
+//         self.heightConstraint.constant = 50
+//         self.view.layoutIfNeeded()
+//      }
+//      
+//   }
     
 
     
