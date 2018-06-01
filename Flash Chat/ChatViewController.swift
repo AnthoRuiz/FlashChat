@@ -61,8 +61,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
       
-      let messageArray = ["Firts Message", "second Message", "Third Message"]
-      cell.messageBody.text = messageArray[indexPath.row]
+      cell.messageBody.text = messageArray[indexPath.row].messageBody
+      cell.senderUsername.text = messageArray[indexPath.row].sender
+      cell.avatarImageView.image = UIImage(named: "egg")
       return cell
       
    }
@@ -70,7 +71,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //TODO: Declare numberOfRowsInSection here:
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 3
+      return messageArray.count
    }
     
     
@@ -166,7 +167,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
          let text = snapshotValue["MessageBody"]!
          let sender = snapshotValue["Sender"]!
          
-         print(text, sender)
+         let message = Message()
+         message.messageBody = text
+         message.sender = sender
+         
+         self.messageArray.append(message)
+         
+         self.configureTableView()
+         self.messageTableView.reloadData()
          
       }
       
